@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_margin="2dp">
+
+    <ImageView
+        android:id="@+id/img_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@color/surface_gray" />
+
+    <!-- Selected overlay -->
+    <View
+        android:id="@+id/view_selected_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#660066FF"
+        android:visibility="gone" />
+
+    <!-- Green check -->
+    <ImageView
+        android:id="@+id/img_check"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="top|end"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_check_circle"
+        android:visibility="gone" />
+
+    <!-- Order number badge -->
+    <TextView
+        android:id="@+id/tv_order"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="top|start"
+        android:layout_margin="4dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:background="@drawable/bg_order_badge"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:liftOnScroll="false">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/primary_blue"
+            app:title="Photo Roll Cinematic"
+            app:titleTextColor="@android:color/white"
+            app:titleTextAppearance="@style/TextAppearance.App.Toolbar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+
+            <!-- Photo Selection Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/surface_card"
+                android:layout_margin="12dp"
+                android:elevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="📷  Photo Gallery"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/dark_gray"
+                         />
+
+                    <TextView
+                        android:id="@+id/tv_selected_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 photos selected"
+                        android:textSize="12sp"
+                        android:textColor="@color/primary_blue"
+                        android:background="@drawable/bg_badge"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_no_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="No photos found"
+                    android:textColor="@color/text_secondary"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:nestedScrollingEnabled="true"
+                    android:paddingHorizontal="4dp"
+                    android:paddingBottom="8dp" />
+
+            </LinearLayout>
+
+            <!-- Timeline Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/surface_card"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="12dp"
+                android:elevation="2dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🎬  Timeline"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_gray"
+                    android:padding="14dp"
+                     />
+
+                <TextView
+                    android:id="@+id/tv_timeline_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    android:gravity="center"
+                    android:text="Tap photos above to add them to your timeline"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_timeline"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:paddingHorizontal="12dp"
+                    android:paddingBottom="12dp"
+                    android:clipToPadding="false" />
+
+            </LinearLayout>
+
+            <!-- Scroll Direction + Cinematic Style Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginBottom="12dp">
+
+                <!-- Scroll Direction Card -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.1"
+                    android:orientation="vertical"
+                    android:background="@color/surface_card"
+                    android:elevation="2dp"
+                    android:layout_marginEnd="6dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Scroll Direction"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/dark_gray"
+                        android:paddingHorizontal="14dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="8dp"
+                         />
+
+                    <!-- Left / Right row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="4dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btn_scroll_left"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/ic_scroll_left"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_arrow_left" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Left"
+                                    android:textSize="9sp"
+                                    android:textColor="@color/dark_gray" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btn_scroll_right"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/ic_scroll_right"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_arrow_right" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Right"
+                                    android:textSize="9sp"
+                                    android:textColor="@color/dark_gray" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <!-- Up / Down row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingHorizontal="10dp"
+                        android:paddingBottom="14dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btn_scroll_up"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="8dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/ic_scroll_up"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_arrow_up" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Up"
+                                    android:textSize="9sp"
+                                    android:textColor="@color/dark_gray" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btn_scroll_down"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center">
+                                <ImageView
+                                    android:id="@+id/ic_scroll_down"
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_arrow_down" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Down"
+                                    android:textSize="9sp"
+                                    android:textColor="@color/dark_gray" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Cinematic Style Card -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@color/surface_card"
+                    android:elevation="2dp"
+                    android:layout_marginStart="6dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cinematic Style"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/dark_gray"
+                        android:paddingHorizontal="14dp"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="8dp"
+                         />
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/ic_film"
+                        android:layout_marginBottom="12dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_cinematic_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@drawable/bg_spinner"
+                        android:padding="10dp"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Generate Video FAB -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_generate"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="🎬  Generate Video"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/green_generate"
+        app:cornerRadius="16dp"
+        app:elevation="6dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

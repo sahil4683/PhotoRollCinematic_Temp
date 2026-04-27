@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Photo Roll Cinematic</string>
+    <string name="generate_video">Generate Video</string>
+    <string name="choose_scroll_direction">Choose Scroll Direction</string>
+    <string name="cinematic_style">Cinematic Style</string>
+    <string name="timeline">Timeline</string>
+    <string name="photo_gallery">Photo Gallery</string>
+</resources>
