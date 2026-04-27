@@ -184,7 +184,8 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this, PreviewActivity::class.java)
                 intent.putExtra(PreviewActivity.EXTRA_DIRECTION, it.scrollDirection.name)
                 intent.putExtra(PreviewActivity.EXTRA_STYLE, it.cinematicStyle.name)
-                intent.putExtra(PreviewActivity.EXTRA_PHOTO_COUNT, it.photos.size)
+                val uriList = ArrayList(it.photos.map { photo -> photo.uri.toString() })
+                intent.putStringArrayListExtra(PreviewActivity.EXTRA_PHOTO_URIS, uriList)
                 startActivity(intent)
                 viewModel.onVideoGenerationHandled()
             }
